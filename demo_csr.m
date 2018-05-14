@@ -1,7 +1,8 @@
 function demo_csr()
 
 % set this to tracker directory
-tracker_path = 'E:\workspace\tracking\CSRDCF';
+% tracker_path = 'E:\workspace\tracking\CSRDCF';
+tracker_path = 'D:\class\æÿ’Û\csr-dcf';
 % add paths
 addpath(tracker_path);
 addpath(fullfile(tracker_path, 'mex'));
@@ -15,9 +16,11 @@ use_reinitialization = true;
 sequence_name = 'ball1';    
 
 % path to the folder with VOT sequences
-base_path = 'E:\datasets\vot2016';
+% base_path = 'E:\datasets\vot2016';
+base_path = 'D:\class\æÿ’Û\sequences';
 base_path = fullfile(base_path, sequence_name);
-img_dir = dir(fullfile(base_path, '*.jpg'));
+img_path=fullfile(base_path,'color');
+img_dir = dir(fullfile(img_path,'*.jpg'));
 
 % initialize bounding box - [x,y,width, height]
 gt = read_vot_regions(fullfile(base_path, 'groundtruth.txt'));
@@ -35,7 +38,7 @@ end
 frame = start_frame;
 while frame <= numel(img_dir),  % tracking loop
 	% read frame
-    impath = fullfile(base_path, img_dir(frame).name);
+    impath = fullfile(img_path, img_dir(frame).name);
     img = imread(impath);
     
     tic()
